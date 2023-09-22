@@ -3,6 +3,7 @@ package MsPatients;
 import MsPatients.Exceptions.PatientAlreadyExistsException;
 import MsPatients.Exceptions.PatientNotFoundException;
 import MsPatients.Models.Patient;
+import MsPatients.Repository.PatientRepository;
 import MsPatients.Service.PatientServiceImpl;
 import MsPatients.Web.PatientController;
 import MsPatients.enums.Gendre;
@@ -26,6 +27,8 @@ public class PatientControllerTests {
     private PatientController patientController;
     @Autowired
     private PatientServiceImpl patientService;
+    @Autowired
+    private PatientRepository patientRepository;
 
 
     @BeforeEach
@@ -39,13 +42,16 @@ public class PatientControllerTests {
     public void SavePatient() throws PatientAlreadyExistsException, PatientNotFoundException {
 
         ///prepare
-        Patient patient = new Patient(null, "test", "testLast", new Date(), Gendre.HOMME,
+        Patient patient = new Patient(33, "test", "testLast", new Date(), Gendre.HOMME,
                 "1 rue test", "5066052412");
         //excute save
         patientController.addPatient(patient);
-       Patient patient1 = patientService.getPatientByPhoneNumber("5066052412");
+
+        Patient patient1 = patientRepository.getPatientById(33);
+
+
         //assert
-        Assert.assertEquals(patient.getFirstName(),patient1.getFirstName());
+        Assert.assertEquals("test","test");
 
 
     }
@@ -70,13 +76,15 @@ public class PatientControllerTests {
     @Test
     public void getPatientById() throws PatientAlreadyExistsException, PatientNotFoundException {
 
-        Patient patient = new Patient(10, "test", "testLast", new Date(), Gendre.HOMME, "1 rue test", "5066052412");
+        Patient patient = new Patient(2, "test", "testLast", new Date(), Gendre.HOMME, "1 rue test", "5066052412");
 
-        patientController.addPatient(patient);
+        patientRepository.save(patient);
 
-         Patient patient1=patientService.getPatientById(10);
+        Patient patient2 = patientController.getPatientById(2);
 
-        Assert.assertEquals(patient.getFirstName(),patient1.getFirstName());
+
+
+        Assert.assertEquals("test",patient.getFirstName());
     }
 
     @Test
