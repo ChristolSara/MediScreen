@@ -11,12 +11,13 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="MsDiabete" target="1.5" />
+      <module name="MsDiabete" target="17" />
       <module name="MsPatients" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="MsDiabete" options="-parameters" />
       <module name="MsPatients" options="-parameters" />
     </option>
   </component>

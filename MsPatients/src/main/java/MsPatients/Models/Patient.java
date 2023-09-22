@@ -2,6 +2,7 @@ package MsPatients.Models;
 
 import MsPatients.enums.Gendre;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,6 +22,7 @@ public class Patient {
     private Date birthday;
     private Gendre genre;
     private String adress;
+    @NotBlank(message = "phoneNumber is required")
     private String phoneNumber;
 
 

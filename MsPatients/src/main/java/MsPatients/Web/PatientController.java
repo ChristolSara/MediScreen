@@ -1,9 +1,9 @@
 package MsPatients.Web;
 
-import MsPatients.Exceptions.PatienAlreadyExistsException;
+import MsPatients.Exceptions.PatientAlreadyExistsException;
 import MsPatients.Exceptions.PatientNotFoundException;
 import MsPatients.Models.Patient;
-import MsPatients.Service.PatientService;
+import MsPatients.Service.PatientServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +16,11 @@ import java.util.List;
 public class PatientController {
 
     @Autowired
-    private PatientService patientService;
+    private PatientServiceImpl patientService;
 
 
     @PostMapping("/addPatient")
-    public Patient addPatient(@RequestBody Patient patient) throws PatienAlreadyExistsException {
+    public Patient addPatient(@RequestBody Patient patient) throws PatientAlreadyExistsException {
         return patientService.addPatient(patient);
     }
 

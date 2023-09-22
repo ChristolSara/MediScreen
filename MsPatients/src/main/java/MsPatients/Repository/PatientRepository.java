@@ -9,4 +9,6 @@ public interface PatientRepository extends JpaRepository<Patient,Integer> {
     Patient getPatientById(Integer id);
 
     Patient getPatientByPhoneNumber(String number);
+
+
 }
