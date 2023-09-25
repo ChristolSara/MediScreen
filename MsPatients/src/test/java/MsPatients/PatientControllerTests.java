@@ -57,12 +57,13 @@ public class PatientControllerTests {
     }
 
     @Test
-    public void updatePatient() {
+    public void updatePatient() throws PatientAlreadyExistsException {
         Patient patient = new Patient(10, "test", "testLast", new Date(), Gendre.HOMME, "1 rue test", "5066052412");
 
+        Patient patient1 = patientController.addPatient(patient);
         //update
         patient.setId(22);
-        patientController.updatePatient(patient);
+        patientController.updatePatient(22,patient);
         Assert.assertTrue(patient.getId().equals(22));
 
     }

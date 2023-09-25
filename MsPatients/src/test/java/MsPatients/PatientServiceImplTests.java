@@ -51,7 +51,7 @@ public class PatientServiceImplTests {
 
             //update
             patient.setId(22);
-            patientService.updatePatient(patient);
+            patientService.updatePatient(22,patient);
             Assert.assertTrue(patient.getId().equals(22));
 
         }
@@ -61,6 +61,14 @@ public class PatientServiceImplTests {
             List<Patient> patientList = patientService.allPatients();
             Assert.assertTrue(patientList.size() > 0);
         }
+
+    @Test
+    public void getPatientById() throws PatientAlreadyExistsException, PatientNotFoundException {
+       Patient patient = patientService.getPatientById(1);
+
+        String name = patient.getFirstName();
+        Assert.assertTrue(name.equals("jean"));
+    }
 
         @Test
         public void deletePatient() throws PatientAlreadyExistsException, PatientNotFoundException {

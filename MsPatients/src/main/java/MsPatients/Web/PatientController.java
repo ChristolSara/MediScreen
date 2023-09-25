@@ -4,18 +4,19 @@ import MsPatients.Exceptions.PatientAlreadyExistsException;
 import MsPatients.Exceptions.PatientNotFoundException;
 import MsPatients.Models.Patient;
 import MsPatients.Service.PatientServiceImpl;
+
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@AllArgsConstructor @NoArgsConstructor
+@RequestMapping("")
+@AllArgsConstructor
 public class PatientController {
 
-    @Autowired
+
     private PatientServiceImpl patientService;
 
 
@@ -31,6 +32,7 @@ public class PatientController {
 
     @GetMapping("/patient/{id}")
     public Patient getPatientById(@PathVariable Integer id)throws PatientNotFoundException {
+
         return patientService.getPatientById(id);
     }
 
@@ -40,9 +42,9 @@ public class PatientController {
     }
 
 
-    @PutMapping("/updatePatient")
-    public Patient updatePatient(@RequestBody Patient patient) {
-        return patientService.updatePatient(patient);
+    @PutMapping("/updatePatient/{id}")
+    public Patient updatePatient(@PathVariable Integer id ,@RequestBody Patient patient) {
+        return patientService.updatePatient(id ,patient);
     }
 
     @DeleteMapping("/delete/{id}")
