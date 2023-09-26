@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -25,19 +26,10 @@ public class PatientServiceImpl implements IPatientService {
     public Patient addPatient(Patient patient) throws PatientAlreadyExistsException {
         log.info("save new patient");
 
-
-        Patient patient1 = patientRepository.getPatientByPhoneNumber(patient.getPhoneNumber());
-
-        if (patient1.getPhoneNumber().equals(patient.getPhoneNumber())) {
-            throw new PatientAlreadyExistsException("Patient with id " + patient.getId() + " already exist");
+        if (patientRepository.existsByPhoneNumber(patient.getPhoneNumber())) {
+            throw new PatientAlreadyExistsException("Patient already exist");
         }
-
-
-        if (patient.equals(null)) {
-             patientRepository.save(patient);
-        }
-        return patient;
-
+        return patientRepository.save(patient);
     }
 
     @Override
@@ -51,17 +43,20 @@ public class PatientServiceImpl implements IPatientService {
     @Override
     public Patient getPatientById(Integer id) throws PatientNotFoundException {
         log.info("get patient by id");
-        Patient patient = patientRepository.getPatientById(id);
-        if (patient == null) {
+       Optional<Patient>  patient = patientRepository.findById(id);
+        if (patient.isEmpty()) {
             throw new PatientNotFoundException("Patient with Id " + id + " not found");
         }
-        return patient;
+        Patient patient1 = patient.get();
+        return patient1;
     }
 
     @Override
     public Patient updatePatient(Integer id, Patient patient) {
         log.info("update patient");
+        Patient patient1 = patientRepository.getPatientById(id);
 
+        patientRepository.delete(patient1);
         patient.setId(id);
         return patientRepository.save(patient);
     }

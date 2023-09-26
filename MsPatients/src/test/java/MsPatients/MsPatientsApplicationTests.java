@@ -15,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Date;
 import java.util.List;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 
 @SpringBootTest
 class MsPatientsApplicationTests {
@@ -57,10 +56,12 @@ class MsPatientsApplicationTests {
 
 
 
+
 		Assert.assertTrue(patientList.size() > 0);
 		Assert.assertTrue(String.valueOf(true), patientList.contains(patient));
 		Assert.assertTrue(String.valueOf(true), patientList.contains(patient1));
 		Assert.assertEquals(patient3.toString(),patient2.toString());
+		Assert.assertEquals(patient3.hashCode(),patient2.hashCode());
 		Assert.assertEquals(patient.getPhoneNumber().length(),10);
 
 

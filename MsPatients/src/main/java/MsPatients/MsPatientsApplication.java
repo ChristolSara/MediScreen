@@ -9,14 +9,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+
 import java.util.Arrays;
 import java.util.Date;
 
-import java.util.Random;
-import java.util.stream.Stream;
-
-import static java.lang.Math.max;
-import static java.lang.Math.random;
 
 
 @SpringBootApplication
@@ -27,7 +23,6 @@ public class MsPatientsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MsPatientsApplication.class, args);
 	}
-
 	@Bean
 	CommandLineRunner commandLineRunner(PatientRepository patientRepository){
 		return args -> {

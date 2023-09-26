@@ -12,7 +12,9 @@ public interface PatientRepository extends JpaRepository<Patient,Integer> {
 
     @Query("SELECT p FROM Patient p WHERE p.phoneNumber =:number")
     Patient getPatientByPhoneNumber(@Param("number")String number);
-
-
+    boolean existsByPhoneNumber(String number);
     Patient getPatientById(Integer id);
+    boolean existsById(Integer id);
+
+
 }

@@ -6,6 +6,7 @@ import MsPatients.Models.Patient;
 import MsPatients.Service.PatientServiceImpl;
 
 import MsPatients.Web.PatientController;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +36,13 @@ public class ExceptionsTests {
     public void PatientAlreadyExistsException() throws Exception {
 
         Exception exception = assertThrows(PatientAlreadyExistsException.class, () -> {
-            Patient patient=patientController.getPatientById(1);
+            Patient patient=patientController.getPatientById(4);
             patientController.addPatient(patient);
         });
-        String expectedMessage = "Patient with id 1 already exist";
+        String expectedMessage = "Patient already exist";
         String actualMessage = exception.getMessage();
 
-        assertTrue(actualMessage.contains(expectedMessage));
+        Assert.assertTrue(actualMessage.contains(expectedMessage));
 
     }
 

@@ -12,75 +12,70 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
 @SpringBootTest
 public class PatientServiceImplTests {
+    @Autowired
+    private PatientServiceImpl patientService;
 
+    @Before
+    public void Patient() {
 
+    }
 
+    @Test
+    public void SavePatient() throws PatientAlreadyExistsException, PatientNotFoundException {
+        //préparation
+        Patient patient = new Patient(45, "test", "testLast", new Date(), Gendre.HOMME, "1 rue ", "1222222");
+        //excution save
+        patientService.addPatient(patient);
+        //assertion
+        Assert.assertNotNull(patient);// Check if the result is not null
+        Assert.assertTrue(patient.getFirstName().equals("test"));
 
+    }
 
+    @Test
+    public void updatePatient() throws ParseException, PatientAlreadyExistsException, PatientNotFoundException {
+        Date psteDate = new SimpleDateFormat("yyyy-MM-dd").parse("1900-10-20");
+        Patient patient = new Patient(null, "awa", "chout", psteDate, Gendre.AUTRE, "2 Rue John", "028965");
+//        update
+        patientService.addPatient(patient);
+        Patient patient1 = patientService.getPatientByPhoneNumber("028965");
+        patient1.setPhoneNumber("077777");
+        patientService.updatePatient(patient1.getId(),patient1);
+        Assert.assertEquals(patient1.getPhoneNumber(), "077777");
+        Assert.assertEquals(patient1.getFirstName(), "awa");
+    }
 
-        @Autowired
-        private PatientServiceImpl patientService;
-        @Autowired
-        private PatientController patientController;
-
-
-        @Before
-        public void Patient() {
-
-
-        }
-
-        @Test
-        public void SavePatient() throws PatientAlreadyExistsException {
-            Patient patient = new Patient(10, "test", "testLast", new Date(), Gendre.HOMME, "1 rue test", "5066052412");
-
-            //save
-            patientService.addPatient(patient);
-            Assert.assertNotNull(patient.getAdress());
-            Assert.assertTrue(patient.getFirstName().equals("test"));
-
-        }
-
-        @Test
-        public void updatePatient() {
-            Patient patient = new Patient(10, "test", "testLast", new Date(), Gendre.HOMME, "1 rue test", "5066052412");
-
-            //update
-            patient.setId(22);
-            patientService.updatePatient(22,patient);
-            Assert.assertTrue(patient.getId().equals(22));
-
-        }
-
-        @Test
-        public void listPatient() {
-            List<Patient> patientList = patientService.allPatients();
-            Assert.assertTrue(patientList.size() > 0);
-        }
+    @Test
+    public void listPatient() {
+        List<Patient> patientList = patientService.allPatients();
+        Assert.assertTrue(patientList.size() > 0);
+    }
 
     @Test
     public void getPatientById() throws PatientAlreadyExistsException, PatientNotFoundException {
-       Patient patient = patientService.getPatientById(1);
+         //preparation
+        Patient patient = patientService.getPatientById(1);
 
         String name = patient.getFirstName();
         Assert.assertTrue(name.equals("jean"));
     }
 
-        @Test
-        public void deletePatient() throws PatientAlreadyExistsException, PatientNotFoundException {
-            Patient patient = new Patient(10, "test", "testLast", new Date(), Gendre.HOMME, "1 rue test", "5066052412");
-
-            patientService.addPatient(patient);
-            Integer id = patient.getId();
-            patientService.deletePatientById(id);
-
-
-            Assert.assertTrue(!patientService.allPatients().contains(patient));
-        }
-
-
+    @Test
+    public void deletePatient() throws PatientAlreadyExistsException, PatientNotFoundException {
+        //préparation
+       Patient patient = patientService.getPatientById(4);
+        //excution
+        patientService.deletePatientById(patient.getId());
+        //assertion
+        Assert.assertTrue(!patientService.allPatients().contains(patient));
     }
+
+
+}
