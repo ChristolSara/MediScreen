@@ -1,10 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layout.html">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <title> home</title>
+    <link  href="../bootstrap.min.css" rel="stylesheet">
+    <link href="../style.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;display=swap" rel="stylesheet" />
 
-</body>
+</head>
+
+<div layout:fragment="content">
+    <div class="form-holder">
+        <h2>Patient</h2>
+        <form class="col-md-4">
+
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First name</th>
+                        <th>last name</th>
+                        <th>birthday</th>
+                        <th>Gendre</th>
+                        <th>phone number</th>
+                    </tr>
+                    <tr th:each="p:${patientList}">
+                        <td th:text="${p.id}"></td>
+                        <td th:text="${p.firstName}"></td>
+                        <td th:text="${p.lastName}"></td>
+                        <td th:text="${p.birthday}"></td>
+                        <td th:text="${p.genre}"></td>
+                        <td th:text="${p.adress}"></td>
+                        <td th:text="${p.phoneNumber}"></td>
+
+
+
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+
+        </form>
+    </div>
+
+
+
+        </form>
+
+    </div>
+
+
+
+</div>
+
 </html>
