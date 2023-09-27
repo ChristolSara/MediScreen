@@ -45,7 +45,7 @@
             <td th:text="${patient.adress}"></td>
             <td th:text="${patient.phoneNumber}"></td>
             <td>
-              <a onclick="return confirm('Etes vous sure?')" class="btn btn-secondary border-blue" th:href="@{delete(id=${p.id})}">
+              <a onclick="return confirm('Etes vous sure?')" class="btn btn-secondary border-blue" th:href="@{/delete/(${patient.id})}">
                 Delete
               </a>
             </td>
