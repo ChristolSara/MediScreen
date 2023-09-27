@@ -1,4 +1,4 @@
-package MsPatients.Web;
+package MsPatients.Controller;
 
 import MsPatients.Exceptions.PatientAlreadyExistsException;
 import MsPatients.Exceptions.PatientNotFoundException;

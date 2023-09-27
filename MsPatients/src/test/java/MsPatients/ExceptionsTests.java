@@ -3,9 +3,8 @@ package MsPatients;
 import MsPatients.Exceptions.PatientAlreadyExistsException;
 import MsPatients.Exceptions.PatientNotFoundException;
 import MsPatients.Models.Patient;
-import MsPatients.Service.PatientServiceImpl;
 
-import MsPatients.Web.PatientController;
+import MsPatients.Controller.PatientController;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 

@@ -33,17 +33,17 @@
                         <th>last name</th>
                         <th>birthday</th>
                         <th>Gendre</th>
+                        <th>Gendre</th>
                         <th>phone number</th>
                     </tr>
-                    <tr th:each="p:${patientList}">
-                        <td th:text="${p.id}"></td>
-                        <td th:text="${p.firstName}"></td>
-                        <td th:text="${p.lastName}"></td>
-                        <td th:text="${p.birthday}"></td>
-                        <td th:text="${p.genre}"></td>
-                        <td th:text="${p.adress}"></td>
-                        <td th:text="${p.phoneNumber}"></td>
-
+                    <tr th:Object="${patient}">
+                        <td th:text="${patient.id}"></td>
+                        <td th:text="${patient.firstName}"></td>
+                        <td th:text="${patient.lastName}"></td>
+                        <td th:text="${patient.birthday}"></td>
+                        <td th:text="${patient.genre}"></td>
+                        <td th:text="${patient.adress}"></td>
+                        <td th:text="${patient.phoneNumber}"></td>
 
 
                     </tr>

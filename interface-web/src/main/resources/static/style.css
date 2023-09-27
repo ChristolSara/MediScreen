@@ -1,0 +1,245 @@
+body {
+    overflow-x: hidden;
+    height: 100%;
+    background-repeat: no-repeat;
+      background: no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      background-size: cover;
+      -o-background-size: cover;
+}
+
+.card0 {
+
+    border-radius: 0px;
+}
+
+.card2 {
+    margin: 0px 40px;
+}
+
+.logoSignin{
+    width: 200px !important;
+    margin-top: 20px;
+    margin-left: 35px;
+}
+
+.image {
+    width: 360px;
+    height: 280px;
+}
+
+.border-line {
+    border-right: 1px solid #EEEEEE;
+}
+
+.facebook {
+    background-color: #31cfeb;
+    color: #fff;
+    font-size: 18px;
+    padding-top: 5px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.twitter {
+    background-color: #31cfeb;
+    color: #fff;
+    font-size: 18px;
+    padding-top: 5px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.linkedin {
+    background-color: #31cfeb;
+    color: #fff;
+    font-size: 18px;
+    padding-top: 5px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.line {
+    height: 1px;
+    width: 45%;
+    background-color: #31cfeb;
+    margin-top: 10px;
+}
+
+.or {
+    width: 10%;
+    font-weight: bold;
+}
+
+.text-sm {
+    font-size: 14px !important;
+}
+
+::placeholder {
+    color: #31cfeb;
+    opacity: 1;
+    font-weight: 300
+}
+
+:-ms-input-placeholder {
+    color: #31cfeb;
+    font-weight: 300
+}
+
+::-ms-input-placeholder {
+    color: #BDBDBD;
+    font-weight: 300
+}
+
+input, textarea {
+    padding: 10px 12px 10px 12px;
+    border: 1px solid lightgrey;
+    border-radius: 2px;
+    margin-bottom: 5px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #2C3E50;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+input:focus, textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #304FFE;
+    outline-width: 0;
+}
+
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0;
+}
+
+a {
+    color: inherit;
+    cursor: pointer;
+}
+
+.btn-blue {
+    background-color: #31cfeb;
+    width: 150px;
+    color: #fff;
+    border-radius: 2px;
+}
+
+.btn-blue:hover {
+    background-color: #000;
+    cursor: pointer;
+}
+
+.bg-blue {
+    color: #fff;
+    background-color: #31cfeb;
+}
+
+@media screen and (max-width: 991px) {
+    .logo {
+        margin-left: 0px;
+    }
+
+    .image {
+        width: 300px;
+        height: 220px;
+    }
+
+    .border-line {
+        border-right: none;
+    }
+
+    .card2 {
+        border-top: 1px solid #31cfeb !important;
+        margin: 0px 15px;
+    }
+}
+h2{
+ color: #31cfeb !important;
+ justify-content: center;
+ align-items: center;
+       text-align: center;
+       padding:20px;
+}
+.nav-link {
+    display: block;
+    padding: .5rem 1rem;
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+    color: #31cfeb !important;
+    margin-right: 10px;
+    text-transform: uppercase;
+    font-weight: 200 !important;
+    font-size: 14px;
+}
+
+
+.navbar-nav .active{
+	border-bottom: 4px solid #fff;
+	 border-color: #31cfeb !important;
+}
+
+.logo{
+
+    width:20%;
+	margin-bottom: 7px !important;
+}
+
+.navbar {
+ overflow: visible;
+    padding-top: .5rem;
+     padding-bottom: 0px !important;
+}
+.footer{
+margin-bottom:0px !important;
+}
+
+
+.form-holder {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 80vh;
+      background-color:#f2f4f5;
+
+
+}
+
+form{
+background-color:#fff;
+width:50%;
+ padding: 40px 40px 40px 40px !important;
+  margin: 40px 40px 40px 40px !important;
+ border: 3px solid lightgrey;
+       border-radius: 8px !important;
+          border-color: #31cfeb !important;
+         box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+.border-blue {
+ border-radius: 8px !important;
+    border-color: #31cfeb !important;
+}
+.btn-outline-light{
+   color: #31cfeb !important;
+
+    background-image: none;
+    border-color: #31cfeb !important;
+}
+.form-signin{
+width:100% !important;
+}

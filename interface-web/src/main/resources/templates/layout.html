@@ -19,7 +19,7 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" th:href="@{home}">
+    <a class="navbar-brand" th:href="@{index}">
       <img src="logo.png" width="30" class="logo rounded-circle"/>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -28,16 +28,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ml-auto">
-        <a class="nav-link active" aria-current="page" th:href="@{home}">Home</a>
-        <a class="nav-link" th:href="@{/account}">Account</a>
-        <a class="nav-link" href="/Transfer-To-Bank">Transfer To Bank</a>
-        <a class="nav-link" href="/Transfer-To-Benef">Transfer To Benef</a>
+        <a class="nav-link active" aria-current="page" th:href="@{/Patient}">Home</a>
+        <a class="nav-link" th:href="@{/PatientList}">Patients List</a>
+<!--        <a class="nav-link" href="/Transfer-To-Bank">Transfer To Bank</a>-->
+<!--        <a class="nav-link" href="/Transfer-To-Benef">Transfer To Benef</a>-->
 
-        <a class="nav-link" th:href="@{/beneficiary}">Beneficiary</a>
-        <a class="nav-link" th:href="@{/signUp}">Sign Up</a>
-        <a class="nav-link" th:href="@{/logout}">Logout</a>
+<!--        <a class="nav-link" th:href="@{/beneficiary}">Beneficiary</a>-->
+<!--        <a class="nav-link" th:href="@{/signUp}">Sign Up</a>-->
+<!--        <a class="nav-link" th:href="@{/logout}">Logout</a>-->
 
-        <a class="nav-link" th:object="${user}" th:text="${user.firstName}"></a>
+<!--        <a class="nav-link" th:object="${user}" th:text="${user.firstName}"></a>-->
 
 
       </div>

@@ -4,7 +4,7 @@ import MsPatients.Exceptions.PatientAlreadyExistsException;
 import MsPatients.Exceptions.PatientNotFoundException;
 import MsPatients.Models.Patient;
 import MsPatients.Repository.PatientRepository;
-import MsPatients.Web.PatientController;
+import MsPatients.Controller.PatientController;
 import MsPatients.enums.Gendre;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;

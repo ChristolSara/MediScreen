@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layout.html">
+<head>
+  <title> home</title>
+  <link  href="../bootstrap.min.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Font Awesome icons (free version)-->
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <!-- Google fonts-->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;display=swap" rel="stylesheet" />
+
+</head>
+
+<div layout:fragment="content">
+  <div class="form-holder">
+    <h2>Patients List</h2>
+    <form class="col-md-4">
+
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Birthday</th>
+            <th>Gendre</th>
+            <th>Adress</th>
+            <th>Phone Number</th>
+          </tr>
+          <tr th:each="patient:${patientList}">
+            <td th:text="${patient.id}"></td>
+            <td th:text="${patient.firstName}"></td>
+            <td th:text="${patient.lastName}"></td>
+            <td th:text="${patient.birthday}"></td>
+            <td th:text="${patient.genre}"></td>
+            <td th:text="${patient.adress}"></td>
+            <td th:text="${patient.phoneNumber}"></td>
+            <td>
+              <a onclick="return confirm('Etes vous sure?')" class="btn btn-secondary border-blue" th:href="@{delete(id=${p.id})}">
+                Delete
+              </a>
+            </td>
+
+
+
+          </tr>
+          </thead>
+        </table>
+      </div>
+
+    </form>
+  </div>
+
+
+
+  </form>
+
+</div>
+
+
+
+</div>
+
+</html>
