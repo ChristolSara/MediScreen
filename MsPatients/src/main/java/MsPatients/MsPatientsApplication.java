@@ -23,7 +23,7 @@ public class MsPatientsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MsPatientsApplication.class, args);
 	}
-	@Bean
+	//@Bean
 	CommandLineRunner commandLineRunner(PatientRepository patientRepository){
 		return args -> {
 

@@ -17,6 +17,7 @@
           rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;display=swap"
           rel="stylesheet"/>
+<script src="main.js"></script>
 
 </head>
 
@@ -25,7 +26,7 @@
         <h2>Add Patient</h2>
 
 
-        <form class="col-md-4"  action="#" th:action="@{/addPatient}"
+        <form class="col-md-4" th:action="@{/newPatient}"
               th:object="${Patient}"
               method="post">
             <div class="card">
@@ -38,15 +39,29 @@
                                placeholder="firstName"
                                type="text">
                     </div>
+
                     <div class="form-group input-group">
-                        <input name="birthday" class="form-control" th:value="${Patient.birthday}"
-                               placeholder="birthday"
+                        <input name="lastName" class="form-control" th:value="${Patient.lastName}"
+                               placeholder="lastName"
                                type="text">
                     </div>
+                    <div class="form-group input-group date">
+                        <input name="birthday" class="form-control" th:value="${Patient.birthday}"
+                               placeholder="birthday"
+                               type="date">
+
+                    </div>
                     <div class="form-group input-group">
-                        <input name="genre" class="form-control" th:value="${Patient.genre}"
-                               placeholder="genre"
-                               type="text">
+
+                        <select name="genre" th:field="*{genre}">
+                            <option  th:each="Gendre: ${Gendre}"
+                                    th:value="${Gendre}" th:text="${Gendre}" ></option>
+                        </select>
+
+
+<!--                        <input name="genre" class="form-control" th:value="${Patient.genre}"-->
+<!--                               placeholder="genre"-->
+<!--                               type="text">-->
                     </div>
                     <div class="form-group input-group">
                         <input name="adress" class="form-control" th:value="${Patient.adress}"
@@ -72,5 +87,12 @@
 
 
 </div>
+
+<script>
+    $('.input-group.date').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+</script>
 
 </html>

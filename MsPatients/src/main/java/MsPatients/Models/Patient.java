@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.Random;
@@ -18,7 +19,7 @@ public class Patient {
     private Integer id;
     private String firstName;
     private String lastName;
-    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date birthday;
     private Gendre genre;
     private String adress;
