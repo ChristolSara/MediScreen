@@ -40,10 +40,16 @@
             <td th:text="${patient.id}"></td>
             <td th:text="${patient.firstName}"></td>
             <td th:text="${patient.lastName}"></td>
-            <td th:text="${patient.birthday}"></td>
+            <td  th:text="${#dates.format(patient.birthday, 'dd/MM/yyyy')}"></td>
             <td th:text="${patient.genre}"></td>
             <td th:text="${patient.adress}"></td>
             <td th:text="${patient.phoneNumber}"></td>
+
+            <td>
+              <a onclick="return confirm('Etes vous sure?')" class="btn btn-secondary border-blue" th:href="@{/updatePatient(${patient.id})}">
+                Update
+              </a>
+            </td>
             <td>
               <a onclick="return confirm('Etes vous sure?')" class="btn btn-secondary border-blue" th:href="@{/delete/(${patient.id})}">
                 Delete

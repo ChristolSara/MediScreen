@@ -42,7 +42,7 @@ public class PatientController {
 
 
     @PutMapping("/updatePatient/{id}")
-    public Patient updatePatient(@PathVariable Integer id ,@RequestBody Patient patient) {
+    public Patient updatePatient(@PathVariable Integer id ,@RequestBody Patient patient) throws PatientAlreadyExistsException {
         return patientService.updatePatient(id ,patient);
     }
 

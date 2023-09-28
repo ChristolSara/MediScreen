@@ -40,7 +40,7 @@
                         <td th:text="${patient.id}"></td>
                         <td th:text="${patient.firstName}"></td>
                         <td th:text="${patient.lastName}"></td>
-                        <td th:text="${patient.birthday}"></td>
+                        <td th:text="${#dates.format(patient.birthday, 'dd/MM/yyyy')}"></td>
                         <td th:text="${patient.genre}"></td>
                         <td th:text="${patient.adress}"></td>
                         <td th:text="${patient.phoneNumber}"></td>

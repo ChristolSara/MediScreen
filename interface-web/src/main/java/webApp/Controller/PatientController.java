@@ -4,17 +4,19 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import webApp.Models.Patient;
 import webApp.enums.Gendre;
 
 import java.net.URISyntaxException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 @Controller
 public class PatientController {
+
+
     @GetMapping("/Patient/{id}")
     public String getPatient(@NotNull Model model,@PathVariable Integer id) throws URISyntaxException {
 
@@ -50,7 +52,8 @@ public class PatientController {
 
 
     @PostMapping("/newPatient")
-    public String addPatient( @NotNull Patient patient, Gendre gendre){
+    public String addPatient( @NotNull Patient patient, Gendre gendre) throws ParseException {
+
 
 
         patient.setId(null);
@@ -65,16 +68,26 @@ public class PatientController {
 
         return "/index";
     }
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable int id, Model model) {
+
+
+    @DeleteMapping("/delete")
+    public String delete( int id, Model model) {
         RestTemplate restTemplate = new RestTemplate();
 
         String url = "http://localhost:8050/delete/{id}";
+        restTemplate.delete(url,Patient.class,id);
 
-        String Id= String.valueOf(id);
+        return "/PatientList";
+    }
+    @PutMapping("/updatePatient/{id}")
+    public String updatePatient(@PathVariable int id, Patient patient,Model model) {
 
-        restTemplate.delete(url,Patient.class,Id);
+        HttpEntity<Patient> request = new HttpEntity<>(patient);
+        RestTemplate restTemplate = new RestTemplate();
 
+        String url = "http://localhost:8050/updatePatient/{id}";
+
+        restTemplate.put(url,Patient.class,id);
 
         return "/PatientList";
     }

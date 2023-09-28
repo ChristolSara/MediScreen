@@ -18,9 +18,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @Slf4j
 public class PatientServiceImpl implements IPatientService {
-
     private PatientRepository patientRepository;
-
 
     @Override
     public Patient addPatient(Patient patient) throws PatientAlreadyExistsException {
@@ -52,15 +50,16 @@ public class PatientServiceImpl implements IPatientService {
     }
 
     @Override
-    public Patient updatePatient(Integer id, Patient patient) {
+    public Patient updatePatient(Integer id, Patient patient) throws PatientAlreadyExistsException {
         log.info("update patient");
-        Patient patient1 = patientRepository.getPatientById(id);
-
-        patientRepository.delete(patient1);
         patient.setId(id);
-        return patientRepository.save(patient);
-    }
+        if (patientRepository.existsByPhoneNumber(patient.getPhoneNumber())) {
+            throw new PatientAlreadyExistsException("Patient already exist");
+        }else {
+            return patientRepository.save(patient);
+        }
 
+    }
     @Override
     public Patient getPatientByPhoneNumber(String number) throws PatientNotFoundException {
         log.info("get patient by number");
