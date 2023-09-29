@@ -46,7 +46,7 @@ public class PatientServiceImplTests {
         patientService.addPatient(patient);
         Patient patient1 = patientService.getPatientByPhoneNumber("028965");
         patient1.setPhoneNumber("077777");
-        patientService.updatePatient(patient1.getId(),patient1);
+        patientService.updatePatient(patient.getId(),patient1);
         Assert.assertEquals(patient1.getPhoneNumber(), "077777");
         Assert.assertEquals(patient1.getFirstName(), "awa");
     }

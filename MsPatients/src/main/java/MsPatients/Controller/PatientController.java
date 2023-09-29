@@ -43,10 +43,10 @@ public class PatientController {
 
     @PutMapping("/updatePatient/{id}")
     public Patient updatePatient(@PathVariable Integer id ,@RequestBody Patient patient) throws PatientAlreadyExistsException {
-        return patientService.updatePatient(id ,patient);
+        return patientService.updatePatient(id,patient);
     }
 
-    @DeleteMapping("/delete/{id}")
+   @DeleteMapping("/deletePatient/{id}")
     public void deletePatient(@PathVariable Integer id)throws PatientNotFoundException{
         patientService.deletePatientById(id);
     }

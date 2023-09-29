@@ -1,97 +1,82 @@
 package webApp.Controller;
 
+import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import webApp.Models.Patient;
+import webApp.Service.PatientService;
 import webApp.enums.Gendre;
 
 import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 @Controller
+@AllArgsConstructor
 public class PatientController {
+    private PatientService patientService;
 
 
-    @GetMapping("/Patient/{id}")
-    public String getPatient(@NotNull Model model,@PathVariable Integer id) throws URISyntaxException {
 
-        RestTemplate restTemplate = new RestTemplate();
-
-        String url = "http://localhost:8050/patient/{id}";
-
-         id = 1;
-
-        Patient patient =restTemplate.getForObject(url, Patient.class,id);
-
-        model.addAttribute("patient",patient);
-        return "/index";
-    }
     @GetMapping("/PatientList")
     public String allPatient(@NotNull Model model) throws URISyntaxException {
-
-        String  url = "http://localhost:8050/allPatients";
-        RestTemplate restTemplate = new RestTemplate();
-        Patient[] patientList = restTemplate.getForObject(url, Patient[].class);
+     List<Patient> patientList = patientService.allPatient();
         model.addAttribute("patientList",patientList);
 
         return "/PatientList";
+    }
+
+    @GetMapping("/Patient/{id}")
+    public String getPatient(@NotNull Model model,@PathVariable Integer id) throws URISyntaxException {
+      Patient patient=  patientService.getPatient(id);
+
+        model.addAttribute("patient",patient);
+        return "/index";
+
     }
     @GetMapping("/addPatient")
     public String newPatient(Model model){
 
         Patient patient = new Patient();
-        model.addAttribute("Gendre",Gendre.values());
+        model.addAttribute("Gendre", Gendre.values());
         model.addAttribute("Patient",patient);
         return "/addPatient";
+
     }
 
 
     @PostMapping("/newPatient")
     public String addPatient( @NotNull Patient patient, Gendre gendre) throws ParseException {
-
-
-
-        patient.setId(null);
-
-        HttpEntity<Patient> request = new HttpEntity<>(patient);
-
-        String  url = "http://localhost:8050/addPatient";
-        RestTemplate restTemplate = new RestTemplate();
-
-        Patient patient2= restTemplate.postForObject(url,request,Patient.class);
-
-
+         patientService.addPatient(patient,gendre);
         return "/index";
     }
 
 
-    @DeleteMapping("/delete")
-    public String delete( int id, Model model) {
-        RestTemplate restTemplate = new RestTemplate();
-
-        String url = "http://localhost:8050/delete/{id}";
-        restTemplate.delete(url,Patient.class,id);
-
-        return "/PatientList";
+    @GetMapping("/updatePatient/{id}")
+    public String updatePatient(@PathVariable("id") int id,Model model) throws URISyntaxException {
+        Patient patient1= patientService.getPatient(id);
+        model.addAttribute("Gendre", Gendre.values());
+        model.addAttribute("Patient",patient1);
+        return "/updatePatient";
     }
-    @PutMapping("/updatePatient/{id}")
-    public String updatePatient(@PathVariable int id, Patient patient,Model model) {
-
-        HttpEntity<Patient> request = new HttpEntity<>(patient);
-        RestTemplate restTemplate = new RestTemplate();
-
-        String url = "http://localhost:8050/updatePatient/{id}";
-
-        restTemplate.put(url,Patient.class,id);
-
-        return "/PatientList";
+    @PostMapping("/upPatient")
+    public String upPatient(@NotNull Patient patient) throws ParseException {
+        patientService.updatePatient(patient);
+        return "/index";
     }
 
+    @DeleteMapping("/deletePatient/{id}")
+    public String delete(@PathVariable("id") Integer id) {
+        patientService.delete(id);
+        return "/PatientList";
+
+    }
 
 
 

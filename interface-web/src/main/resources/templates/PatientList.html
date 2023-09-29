@@ -46,12 +46,12 @@
             <td th:text="${patient.phoneNumber}"></td>
 
             <td>
-              <a onclick="return confirm('Etes vous sure?')" class="btn btn-secondary border-blue" th:href="@{/updatePatient(${patient.id})}">
+              <a class="btn btn-secondary border-blue" th:href="@{/updatePatient/{id}(id=${patient.id})}">
                 Update
               </a>
             </td>
             <td>
-              <a onclick="return confirm('Etes vous sure?')" class="btn btn-secondary border-blue" th:href="@{/delete/(${patient.id})}">
+              <a onclick="return confirm('Etes vous sure?')" class="btn btn-secondary border-blue"  th:href="@{/deletePatient/{id}(id=${patient.id})}">
                 Delete
               </a>
             </td>

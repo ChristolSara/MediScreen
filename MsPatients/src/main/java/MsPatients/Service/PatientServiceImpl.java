@@ -6,7 +6,6 @@ import MsPatients.Models.Patient;
 import MsPatients.Repository.PatientRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,7 +40,7 @@ public class PatientServiceImpl implements IPatientService {
     @Override
     public Patient getPatientById(Integer id) throws PatientNotFoundException {
         log.info("get patient by id");
-       Optional<Patient>  patient = patientRepository.findById(id);
+        Optional<Patient> patient = patientRepository.findById(id);
         if (patient.isEmpty()) {
             throw new PatientNotFoundException("Patient with Id " + id + " not found");
         }
@@ -50,16 +49,13 @@ public class PatientServiceImpl implements IPatientService {
     }
 
     @Override
-    public Patient updatePatient(Integer id, Patient patient) throws PatientAlreadyExistsException {
+    public Patient updatePatient(Integer id,Patient patient) throws PatientAlreadyExistsException {
         log.info("update patient");
-        patient.setId(id);
-        if (patientRepository.existsByPhoneNumber(patient.getPhoneNumber())) {
-            throw new PatientAlreadyExistsException("Patient already exist");
-        }else {
-            return patientRepository.save(patient);
-        }
+       patient.setId(id);
+        return patientRepository.save(patient);
 
     }
+
     @Override
     public Patient getPatientByPhoneNumber(String number) throws PatientNotFoundException {
         log.info("get patient by number");

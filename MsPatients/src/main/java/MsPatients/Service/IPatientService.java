@@ -10,7 +10,9 @@ public interface IPatientService {
     public Patient addPatient(Patient patient) throws PatientAlreadyExistsException;
     public List<Patient> allPatients();
     public Patient getPatientById(Integer id) throws PatientNotFoundException;
-    public Patient updatePatient(Integer id,Patient patient) throws PatientAlreadyExistsException;
+
+    Patient updatePatient(Integer id, Patient patient) throws PatientAlreadyExistsException;
+
     public Patient getPatientByPhoneNumber(String number) throws PatientNotFoundException;
     public void deletePatientById(Integer id) throws PatientNotFoundException;
 }
