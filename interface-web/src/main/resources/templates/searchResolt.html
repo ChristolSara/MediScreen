@@ -22,15 +22,44 @@
     <div class="form-holder">
         <h2>Patient</h2>
 
-        <form action="#" th:action="@{/search}" th:object="${patient}" method="GET">
 
-            <p> ID: <input type="number" name ="id" th:field="${patient.id}" th:value="${patient.id}"/> </p>
 
-            <p> <input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        <form class="col-md-4">
+
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First name</th>
+                        <th>last name</th>
+                        <th>birthday</th>
+                        <th>Gendre</th>
+                        <th>Gendre</th>
+                        <th>phone number</th>
+                    </tr>
+                    <tr th:Object="${patient1}">
+                        <td th:text="${patient1.id}"></td>
+                        <td th:text="${patient1.firstName}"></td>
+                        <td th:text="${patient1.lastName}"></td>
+                        <td th:text="${#dates.format(patient1.birthday, 'dd/MM/yyyy')}"></td>
+                        <td th:text="${patient1.genre}"></td>
+                        <td th:text="${patient1.adress}"></td>
+                        <td th:text="${patient1.phoneNumber}"></td>
+
+
+                    </tr>
+                    </thead>
+                </table>
+            </div>
 
         </form>
+    </div>
 
 
+
+        </form>
 
     </div>
 

@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +35,9 @@ public class PatientService {
     }
 
     public Patient getPatient(@PathVariable Integer id) throws URISyntaxException {
-        return restTemplate.getForObject("http://localhost:8050/patient/{id}", Patient.class, id);
+
+        ResponseEntity patient = restTemplate.getForEntity("http://localhost:8050/patient/"+id, Patient.class);
+        return patient.getStatusCode() == HttpStatus.OK ? (Patient) patient.getBody() : null;
 
     }
 
@@ -43,9 +48,10 @@ public class PatientService {
 
     }
 
-    public Patient updatePatient(Patient patient) {
+    public void updatePatient( Integer id,Patient patient) {
 
-        return restTemplate.postForObject("http://localhost:8050/updatePatient/{id}", patient, Patient.class);
+    restTemplate.put("http://localhost:8050/updatePatient/{id}", patient,id);
+
     }
 
     public void delete(Integer id) {

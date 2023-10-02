@@ -51,8 +51,14 @@ public class PatientServiceImpl implements IPatientService {
     @Override
     public Patient updatePatient(Integer id,Patient patient) throws PatientAlreadyExistsException {
         log.info("update patient");
-       patient.setId(id);
-        return patientRepository.save(patient);
+        Optional<Patient> patient1=patientRepository.findById(id);
+
+        if(patient1.isPresent()){
+            patient.setId(id);
+            patientRepository.save(patient);
+            return patient;
+        }
+      return null;
 
     }
 
