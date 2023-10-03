@@ -40,9 +40,11 @@ public class PatientServiceImpl implements IPatientService {
     @Override
     public Patient getPatientById(Integer id) throws PatientNotFoundException {
         log.info("get patient by id");
+
         Optional<Patient> patient = patientRepository.findById(id);
         if (patient.isEmpty()) {
             throw new PatientNotFoundException("Patient with Id " + id + " not found");
+
         }
         Patient patient1 = patient.get();
         return patient1;

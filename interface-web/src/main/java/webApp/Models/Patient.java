@@ -1,5 +1,9 @@
 package webApp.Models;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,14 +16,16 @@ import java.util.Date;
 @Data @AllArgsConstructor @NoArgsConstructor
 public class Patient {
     private Integer id;
+    @NotEmpty(message = "Patient's firstName cannot be empty.")
     private String firstName;
+    @NotEmpty(message = "Patient's lastName cannot be empty.")
     private String lastName;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
     private Gendre genre;
     private String adress;
+    @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits")
 
     private String phoneNumber;
+
 
 }

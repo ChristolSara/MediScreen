@@ -38,17 +38,20 @@
                         <input name="firstName" class="form-control" th:value="${Patient.firstName}"
                                placeholder="firstName"
                                type="text">
+                        <span class="text-danger" th:errors="${Patient.firstName}"></span>
                     </div>
 
                     <div class="form-group input-group">
                         <input name="lastName" class="form-control" th:value="${Patient.lastName}"
                                placeholder="lastName"
                                type="text">
+                        <span class="text-danger" th:errors="${Patient.lastName}"></span>
                     </div>
                     <div class="form-group input-group date">
                         <input name="birthday" class="form-control" th:field="${Patient.birthday}" th:value="${Patient.birthday}"
                                placeholder="birthday"
                                type="date">
+
 
                     </div>
                     <div class="form-group input-group">
@@ -67,11 +70,13 @@
                         <input name="adress" class="form-control" th:value="${Patient.adress}"
                                placeholder="adress"
                                type="text">
+                        <span class="text-danger" th:errors="${Patient.adress}"></span>
                     </div>
                     <div class="form-group input-group">
                         <input name="phoneNumber" class="form-control" th:value="${Patient.phoneNumber}"
                                placeholder="phoneNumber"
                                type="text">
+                        <span class="text-danger" th:errors="${Patient.phoneNumber}"></span>
                     </div>
 
 

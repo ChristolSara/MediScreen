@@ -34,11 +34,12 @@ public class PatientService {
         return List.of(patientList);
     }
 
-    public Patient getPatient(@PathVariable Integer id) throws URISyntaxException {
+    public ResponseEntity<Patient> getPatient(Integer id) {
+        return restTemplate.getForEntity("http://localhost:8050/patient/{id}", Patient.class, id);
+    }
 
-        ResponseEntity patient = restTemplate.getForEntity("http://localhost:8050/patient/"+id, Patient.class);
-        return patient.getStatusCode() == HttpStatus.OK ? (Patient) patient.getBody() : null;
-
+    public ResponseEntity<Patient> getPatientByNumber(String num) {
+        return restTemplate.getForEntity("http://localhost:8050/patientNum/{num}", Patient.class, num);
     }
 
     public Patient addPatient(Patient patient, Gendre gendre) throws ParseException {

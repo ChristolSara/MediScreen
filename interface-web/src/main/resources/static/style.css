@@ -7,6 +7,7 @@ body {
       -moz-background-size: cover;
       background-size: cover;
       -o-background-size: cover;
+      color: #3E3358;
 }
 
 .card0 {
@@ -168,7 +169,8 @@ a {
     }
 }
 h2{
- color: #31cfeb !important;
+font-family: 'Libre Baskerville';
+ color: #EB5E21!important;
  justify-content: center;
  align-items: center;
        text-align: center;
@@ -179,17 +181,11 @@ h2{
     padding: .5rem 1rem;
     text-decoration: none;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
-    color: #31cfeb !important;
+    color: #F4F1EC!important;
     margin-right: 10px;
     text-transform: uppercase;
     font-weight: 200 !important;
     font-size: 14px;
-}
-
-
-.navbar-nav .active{
-	border-bottom: 4px solid #fff;
-	 border-color: #31cfeb !important;
 }
 
 .logo{
@@ -215,7 +211,7 @@ margin-bottom:0px !important;
       align-items: center;
       text-align: center;
       min-height: 80vh;
-      background-color:#f2f4f5;
+      background-color:#F4F1EC;
 
 
 }
@@ -227,18 +223,19 @@ width:50%;
   margin: 40px 40px 40px 40px !important;
  border: 3px solid lightgrey;
        border-radius: 8px !important;
-          border-color: #31cfeb !important;
+          border-color: #EB5E21 !important;
          box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
 .border-blue {
  border-radius: 8px !important;
-    border-color: #31cfeb !important;
+     background-color: #EB5E21 !important;
+    border-color: #EB5E21 !important;
 }
 .btn-outline-light{
-   color: #31cfeb !important;
+   color: #EB5E21 !important;
 
     background-image: none;
-    border-color: #31cfeb !important;
+    border-color: #EB5E21 !important;
 }
 .form-signin{
 width:100% !important;

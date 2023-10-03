@@ -1,11 +1,13 @@
 package webApp.Controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import webApp.Models.Patient;
@@ -29,17 +31,23 @@ public class PatientController {
         return "/index";
     }
     @GetMapping("/search")
-    public String searchPatient( Patient patient,Model model) throws URISyntaxException {
+    public String searchPatient(@Valid Patient patient, Model model, BindingResult result) throws URISyntaxException {
 
 
-
-        if ( patientService.getPatient(patient.getId()) == null ){
-
-            model.addAttribute("404",patient);
-            return "/ErreurPage";
+        if(patient.getPhoneNumber().isEmpty()){
+            String erreur = "Phone Number required";
+            model.addAttribute("erreur",erreur);
+            return "/index";
         }
-        model.addAttribute("patient1",patient);
-        return "/index";
+        Patient patient1 =patientService.getPatientByNumber(patient.getPhoneNumber()).getBody();
+
+        if(patient1 == null){
+            String erreur = "Phone Number not found";
+            model.addAttribute("erreur",erreur);
+            return "/index";
+       }
+        model.addAttribute("patient1",patient1);
+        return "/searchResolt";
     }
 
 
@@ -51,14 +59,14 @@ public class PatientController {
         return "/PatientList";
     }
 
-    @GetMapping("/Patient/{id}")
-    public String getPatient(@NotNull Model model,@PathVariable Integer id) throws URISyntaxException {
-      Patient patient=  patientService.getPatient(id);
-
-        model.addAttribute("patient",patient);
-        return "/index";
-
-    }
+//    @GetMapping("/Patient/{id}")
+//    public String getPatient(@NotNull Model model,@PathVariable Integer id) throws URISyntaxException {
+//      Patient patient=  patientService.getPatient(id);
+//
+//        model.addAttribute("patient",patient);
+//        return "/index";
+//
+//    }
     @GetMapping("/addPatient")
     public String newPatient(Model model){
 
@@ -70,14 +78,18 @@ public class PatientController {
     }
 
     @PostMapping("/newPatient")
-    public String addPatient( @NotNull Patient patient, Gendre gendre) throws ParseException {
+    public String addPatient( @NotNull @Valid Patient patient, Gendre gendre,Model model,BindingResult result ) throws ParseException, URISyntaxException {
+
          patientService.addPatient(patient,gendre);
+        List<Patient> patientList = patientService.allPatient();
+        model.addAttribute("patientList",patientList);
+
         return "/PatientList";
     }
 
     @GetMapping("/updatePatient/{id}")
     public String updatePatient(@PathVariable("id") int id,Model model) throws URISyntaxException {
-        Patient patient1= patientService.getPatient(id);
+        Patient patient1= patientService.getPatient(id).getBody();
         model.addAttribute("Gendre", Gendre.values());
         model.addAttribute("Patient",patient1);
         return "updatePatient";
@@ -91,9 +103,12 @@ public class PatientController {
     }
 
     @GetMapping("/deletePatient/{id}")
-    public String delete(@PathVariable("id") Integer id) {
+    public String delete(@PathVariable("id") Integer id,Model model) throws URISyntaxException {
         patientService.delete(id);
-        return "PatientList";
+        List<Patient> patientList = patientService.allPatient();
+        model.addAttribute("patientList",patientList);
+
+        return "/PatientList";
 
     }
 
