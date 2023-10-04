@@ -4,6 +4,12 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.ui.Model;
 import webApp.Models.Patient;
 import webApp.Service.PatientService;
 import webApp.enums.Gendre;
@@ -19,21 +25,25 @@ import static org.junit.jupiter.api.Assertions.*;
 class PatientControllerTest {
     @Autowired
     private PatientService patientService;
+    @Autowired
+    private  PatientController patientController;
 
 
 
     @Test
-    void homePage() {
+    void homePage() throws URISyntaxException {
+
+;
     }
 
     @Test
     void searchPatient() throws ParseException {
 
-        Date psteDate = new SimpleDateFormat("yyyy-MM-dd").parse("1988-12-05");
-        Patient patient = new Patient(null, "abdel", "mabrou", psteDate, Gendre.HOMME, "2 rue rass", "0202025569");
+        Date psteDate = new SimpleDateFormat("yyyy-MM-dd").parse("1900-10-20");
+        Patient patient = new Patient(null, "sara", "mabrou", psteDate, Gendre.HOMME, "2 rue rass", "0145886933");
 
         //excution
-        patientService.addPatient(patient,Gendre.HOMME);
+        patientService.addPatient(patient,patient.getGenre());
         String name =  patientService.getPatientByNumber(patient.getPhoneNumber()).getBody().getFirstName();
 
        //assertion
@@ -54,7 +64,7 @@ class PatientControllerTest {
     @Test
     void addPatient() throws ParseException {
         Date psteDate = new SimpleDateFormat("yyyy-MM-dd").parse("1988-12-05");
-        Patient patient = new Patient(null, "abdel", "mabrou", psteDate, Gendre.HOMME, "2 rue rass", "02020");
+        Patient patient = new Patient(null, "abdel", "mabrou", psteDate, Gendre.HOMME, "2 rue rass", "0202025663");
 
         //excution
         patientService.addPatient(patient,Gendre.HOMME);
@@ -77,7 +87,7 @@ class PatientControllerTest {
     void delete() throws ParseException, URISyntaxException {
 
         Date psteDate = new SimpleDateFormat("yyyy-MM-dd").parse("1988-12-05");
-        Patient patient = new Patient(null, "abdel", "mabrou", psteDate, Gendre.FEMME, "2 rue rass", "06565656");
+        Patient patient = new Patient(null, "abdel", "mabrou", psteDate, Gendre.FEMME, "2 rue rass", "0656565600");
         Patient patientCreated = patientService.addPatient(patient,Gendre.FEMME);
         List<Patient> patientList = patientService.allPatient();
         //excution

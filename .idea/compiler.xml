@@ -7,19 +7,21 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="MsPatients" />
-        <module name="MsDiabete" />
         <module name="interface-web" />
+        <module name="MsNotes" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="interface-web" target="17" />
-      <module name="MsDiabete" target="17" />
+      <module name="MsNote" target="17" />
+      <module name="MsNotes" target="17" />
       <module name="MsPatients" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="MsDiabete" options="-parameters" />
+      <module name="MsNote" options="-parameters" />
+      <module name="MsNotes" options="-parameters" />
       <module name="MsPatients" options="-parameters" />
       <module name="interface-web" options="-parameters" />
     </option>

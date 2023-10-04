@@ -27,8 +27,8 @@ public class MsPatientsApplication {
 	CommandLineRunner commandLineRunner(PatientRepository patientRepository){
 		return args -> {
 
-			int min = 2000000;
-			int max = 4000000;
+			Long min = 2000000000L;
+			Long max = 4000000000L;
 
 			int b = (int)(Math.random()*(max-min+1)+min);
 

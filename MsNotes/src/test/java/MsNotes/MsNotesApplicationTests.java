@@ -1,10 +1,10 @@
-package MsDiabete;
+package MsNotes;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MsDiabeteApplicationTests {
+class MsNotesApplicationTests {
 
 	@Test
 	void contextLoads() {

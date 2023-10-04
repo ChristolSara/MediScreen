@@ -1,13 +1,13 @@
-package MsDiabete;
+package MsNotes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MsDiabeteApplication {
+public class MsNotesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MsDiabeteApplication.class, args);
+		SpringApplication.run(MsNotesApplication.class, args);
 	}
 
 }
