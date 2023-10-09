@@ -29,38 +29,16 @@
           <thead>
           <tr>
             <th>ID</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Birthday</th>
-            <th>Gendre</th>
-            <th>Adress</th>
-            <th>Phone Number</th>
+            <th>Patient Id</th>
+            <th>Note</th>
+            <th>date</th>
+
           </tr>
-          <tr th:each="patient:${patientList}">
-            <td th:text="${patient.id}"></td>
-            <td th:text="${patient.firstName}"></td>
-            <td th:text="${patient.lastName}"></td>
-            <td  th:text="${#dates.format(patient.birthday, 'dd/MM/yyyy')}"></td>
-            <td th:text="${patient.genre}"></td>
-            <td th:text="${patient.adress}"></td>
-            <td th:text="${patient.phoneNumber}"></td>
-
-            <td>
-              <a class="btn btn-secondary border-blue" th:href="@{/notes/NoteList/{id}(id=${patient.id})}">
-                Notes
-              </a>
-            </td>
-
-            <td>
-              <a class="btn btn-secondary border-blue" th:href="@{/updatePatient/{id}(id=${patient.id})}">
-                Update
-              </a>
-            </td>
-            <td>
-              <a onclick="return confirm('Etes vous sure?')" class="btn btn-secondary border-blue"  th:href="@{/deletePatient/{id}(id=${patient.id})}">
-                Delete
-              </a>
-            </td>
+          <tr th:each="note:${noteList}">
+            <td th:text="${note.id}"></td>
+            <td th:text="${note.patientId}"></td>
+            <td th:text="${note.note}"></td>
+            <td  th:text="${#dates.format(note.noteDate, 'dd/MM/yyyy')}"></td>
 
 
 

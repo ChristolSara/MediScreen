@@ -52,7 +52,7 @@ public class Patient {
         //8999 so it wont succed 9999 when the 1000 is added
         set3 = generator.nextInt(899) + 100;
 
-        return String.valueOf(set1 + " " + set2 + " " + set3);
+        return String.valueOf(set1)+String.valueOf(set3)+String.valueOf(set2);
 
     }
 }

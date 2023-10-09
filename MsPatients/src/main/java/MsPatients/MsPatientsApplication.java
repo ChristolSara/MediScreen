@@ -27,11 +27,6 @@ public class MsPatientsApplication {
 	CommandLineRunner commandLineRunner(PatientRepository patientRepository){
 		return args -> {
 
-			Long min = 2000000000L;
-			Long max = 4000000000L;
-
-			int b = (int)(Math.random()*(max-min+1)+min);
-
 
 			for (String name : Arrays.asList("jean", "sara", "ilyane", "rania", "awatef")) {
 				Patient patient = new Patient();
@@ -39,7 +34,7 @@ public class MsPatientsApplication {
 				patient.setLastName(name + "Last");
 				patient.setBirthday(new Date());
 				patient.setGenre(Gendre.randomGendre());
-				patient.setPhoneNumber(patient.randomNumber());
+				patient.setPhoneNumber("0"+patient.randomNumber());
 				patient.setAdress("1 rue " + name);
 
 				patientRepository.save(patient);

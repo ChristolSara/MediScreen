@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import webApp.Gateway.PatientGateway;
 import webApp.Models.Patient;
 import webApp.enums.Gendre;
 
@@ -21,45 +22,37 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-
+@AllArgsConstructor
 public class PatientService {
 
     @Autowired
-    RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
+    private final PatientGateway patientGateway;
 
     public List<Patient> allPatient() throws URISyntaxException {
-        String urlBase = "http://localhost:8050/";
-        Patient[] patientList = restTemplate.getForObject(urlBase + "allPatients", Patient[].class);
-        return List.of(patientList);
+      return patientGateway.allPatient();
     }
 
-    public ResponseEntity<Patient> getPatient(Integer id) {
-        return restTemplate.getForEntity("http://localhost:8050/patient/{id}", Patient.class, id);
+    public Patient getPatient(Integer id) {
+        return patientGateway.getPatient(id).getBody();
     }
 
-    public ResponseEntity<Patient> getPatientByNumber(String num) {
-        return restTemplate.getForEntity("http://localhost:8050/patientNum/{num}", Patient.class, num);
+    public Patient getPatientByNumber(String num) {
+        return patientGateway.getPatientByNumber(num).getBody();
     }
 
     public Patient addPatient(Patient patient, Gendre gendre) throws ParseException {
-
-        HttpEntity<Patient> request = new HttpEntity<>(patient);
-        return restTemplate.postForObject("http://localhost:8050/addPatient", request, Patient.class);
-
+      return patientGateway.addPatient(patient,gendre);
     }
 
     public void updatePatient( Integer id,Patient patient) {
-
-    restTemplate.put("http://localhost:8050/updatePatient/{id}", patient,id);
+        patientGateway.updatePatient(id,patient);
 
     }
 
     public void delete(Integer id) {
-
-        String url = "http://localhost:8050/deletePatient/{id}";
-        restTemplate.delete(url, id);
-
+        patientGateway.delete(id);
     }
 
 }

@@ -39,7 +39,7 @@ public class PatientController {
             model.addAttribute("erreur",erreur);
             return "/index";
         }
-        Patient patient1 =patientService.getPatientByNumber(patient.getPhoneNumber()).getBody();
+        Patient patient1 =patientService.getPatientByNumber(patient.getPhoneNumber());
 
         if(patient1 == null){
             String erreur = "Phone Number not found";
@@ -58,15 +58,6 @@ public class PatientController {
 
         return "/PatientList";
     }
-
-//    @GetMapping("/Patient/{id}")
-//    public String getPatient(@NotNull Model model,@PathVariable Integer id) throws URISyntaxException {
-//      Patient patient=  patientService.getPatient(id);
-//
-//        model.addAttribute("patient",patient);
-//        return "/index";
-//
-//    }
     @GetMapping("/addPatient")
     public String newPatient(Model model){
 
@@ -89,7 +80,7 @@ public class PatientController {
 
     @GetMapping("/updatePatient/{id}")
     public String updatePatient(@PathVariable("id") int id,Model model) throws URISyntaxException {
-        Patient patient1= patientService.getPatient(id).getBody();
+        Patient patient1= patientService.getPatient(id);
         model.addAttribute("Gendre", Gendre.values());
         model.addAttribute("Patient",patient1);
         return "updatePatient";
