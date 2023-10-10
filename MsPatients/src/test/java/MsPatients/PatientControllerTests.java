@@ -21,16 +21,14 @@ import java.util.List;
 
 
 @SpringBootTest
-
 public class PatientControllerTests {
     @Autowired
-     PatientController patientController;
+    PatientController patientController;
 
 
     private static Patient patientTest = new Patient();
     @BeforeEach
-     public void injectPatient()  {
-        patientTest.setId(13333);
+      void injectPatient()  {
 
       patientTest.setPhoneNumber("0605889977");
       patientTest.setFirstName("terst");
@@ -38,11 +36,12 @@ public class PatientControllerTests {
       patientTest.setLastName("testLast");
       patientTest.setGenre(Gendre.FEMME);
 
+
     }
     @AfterEach
-    public void delPatient() throws PatientAlreadyExistsException, PatientNotFoundException {
+     void delPatient() throws PatientAlreadyExistsException, PatientNotFoundException {
 
-        patientController.deletePatient(13333);
+        patientController.delete(patientTest);
 
     }
     @Test
@@ -50,8 +49,8 @@ public class PatientControllerTests {
 
 
         ///prepare
-
         patientController.addPatient(patientTest);
+
         //excute save
 
         Patient patient1 = patientController.getPatientByPhoneNumber(patientTest.getPhoneNumber());

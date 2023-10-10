@@ -76,4 +76,8 @@ public class PatientServiceImpl implements IPatientService {
         log.info("delete patient");
         patientRepository.deleteById(id);
     }
+
+    public void delete(Patient patient) {
+        patientRepository.delete(patient);
+    }
 }

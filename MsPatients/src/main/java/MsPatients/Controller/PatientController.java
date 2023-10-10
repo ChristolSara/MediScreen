@@ -50,4 +50,9 @@ public class PatientController {
     public void deletePatient(@PathVariable Integer id)throws PatientNotFoundException{
         patientService.deletePatientById(id);
     }
+    @DeleteMapping("/delete")
+    public void delete(Patient patient){
+        patientService.delete(patient);
+    }
+
 }
