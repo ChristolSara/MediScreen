@@ -20,7 +20,7 @@ public class Patient {
     private String firstName;
     @NotEmpty(message = "Patient's lastName cannot be empty.")
     private String lastName;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+
     private Date birthday;
     private Gendre genre;
     private String adress;

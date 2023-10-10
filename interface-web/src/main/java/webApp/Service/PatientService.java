@@ -1,7 +1,6 @@
 package webApp.Service;
 
 import lombok.AllArgsConstructor;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -26,8 +25,6 @@ import java.util.Map;
 public class PatientService {
 
     @Autowired
-    private final RestTemplate restTemplate;
-
     private final PatientGateway patientGateway;
 
     public List<Patient> allPatient() throws URISyntaxException {
@@ -42,8 +39,8 @@ public class PatientService {
         return patientGateway.getPatientByNumber(num).getBody();
     }
 
-    public Patient addPatient(Patient patient, Gendre gendre) throws ParseException {
-      return patientGateway.addPatient(patient,gendre);
+    public Patient addPatient(Patient patient) throws ParseException {
+      return patientGateway.addPatient(patient);
     }
 
     public void updatePatient( Integer id,Patient patient) {

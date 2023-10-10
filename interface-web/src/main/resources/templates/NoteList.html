@@ -4,9 +4,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="/layout.html">
 <head>
-  <title> home</title>
-  <link  href="../bootstrap.min.css" rel="stylesheet">
-  <link href="../style.css" rel="stylesheet">
+  <title> Notes</title>
+  <link  href="/bootstrap.min.css" rel="stylesheet">
+  <link href="/style.css" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- Font Awesome icons (free version)-->
@@ -20,7 +20,7 @@
 
 <div layout:fragment="content">
   <div class="form-holder">
-    <h2>Patients List</h2>
+    <h2>Patients Notes</h2>
     <form class="col-md-6">
 
 
@@ -32,6 +32,12 @@
             <th>Patient Id</th>
             <th>Note</th>
             <th>date</th>
+            <th>
+              <a class="btn btn-secondary border-blue"
+                 th:href="@{/addNote/{id}(id=${patientId})}">
+                ADD Note
+              </a>
+            </th>
 
           </tr>
           <tr th:each="note:${noteList}">
@@ -39,6 +45,13 @@
             <td th:text="${note.patientId}"></td>
             <td th:text="${note.note}"></td>
             <td  th:text="${#dates.format(note.noteDate, 'dd/MM/yyyy')}"></td>
+            <td>
+              <a onclick="return confirm('Etes vous sure?')" class="btn btn-secondary border-blue"
+                 th:href="@{/deleteNote/{id}(id=${note.id})}">
+                Delete
+              </a>
+            </td>
+
 
 
 

@@ -28,8 +28,11 @@ public class NoteService {
         return noteRepository.findByPatientId(patientId);
     }
 
+    public Note findById(String id){
+        return noteRepository.findNoteById(id);
+    }
 
-    public void deleteByPatientId(Integer patientId) {
-        noteRepository.deleteByPatientId(patientId);
+    public void deleteById(String id) {
+        noteRepository.deleteById(id);
     }
 }

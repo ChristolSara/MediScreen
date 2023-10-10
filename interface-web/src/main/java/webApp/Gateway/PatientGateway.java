@@ -32,7 +32,7 @@ public class PatientGateway {
         return restTemplate.getForEntity("http://localhost:8050/patientNum/{num}", Patient.class, num);
     }
 
-    public Patient addPatient(Patient patient, Gendre gendre) throws ParseException {
+    public Patient addPatient(Patient patient) throws ParseException {
 
         HttpEntity<Patient> request = new HttpEntity<>(patient);
         return restTemplate.postForObject("http://localhost:8050/addPatient", request, Patient.class);

@@ -4,6 +4,7 @@ import MsPatients.Exceptions.PatientAlreadyExistsException;
 import MsPatients.Exceptions.PatientNotFoundException;
 import MsPatients.Models.Patient;
 import MsPatients.Repository.PatientRepository;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class PatientServiceImpl implements IPatientService {
     private PatientRepository patientRepository;
 
     @Override
-    public Patient addPatient(Patient patient) throws PatientAlreadyExistsException {
+    public Patient addPatient(@Valid Patient patient) throws PatientAlreadyExistsException {
         log.info("save new patient");
 
         if (patientRepository.existsByPhoneNumber(patient.getPhoneNumber())) {

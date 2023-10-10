@@ -21,8 +21,8 @@ public class NoteController {
     }
 
 
-    @GetMapping("/note")
-    public Note getNoteById(@RequestParam(name="id")String id){
+    @GetMapping("/note/{id}")
+    public Note getNoteById(@PathVariable String id){
        return noteService.findNoteById(id);
     }
     @GetMapping("/notesPatient/{patientId}")
@@ -30,9 +30,9 @@ public class NoteController {
 
         return noteService.findByPatientId(patientId);
     }
-    @DeleteMapping("/deleteNote/{patientId}")
-    public void deleteNote(@PathVariable Integer patientId){
-        noteService.deleteByPatientId(patientId);
+    @DeleteMapping("/deleteNote/{id}")
+    public void deleteNote(@PathVariable String id){
+        noteService.deleteById(id);
     }
 
 

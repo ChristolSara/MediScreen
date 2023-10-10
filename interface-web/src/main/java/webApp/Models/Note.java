@@ -10,10 +10,10 @@ import java.util.Date;
 public class Note {
 
     private String id;
-    private  Integer PatientId;
+    private  Integer patientId;
     private String note;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+
     private Date noteDate;
 
 

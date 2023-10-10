@@ -16,7 +16,7 @@ import java.util.List;
 public class PatientController {
 
 
-    private PatientServiceImpl patientService;
+    private final PatientServiceImpl patientService;
 
 
     @PostMapping("/addPatient")

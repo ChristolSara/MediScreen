@@ -2,7 +2,6 @@ package webApp.Controller;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
@@ -52,7 +51,7 @@ public class PatientController {
 
 
     @GetMapping("/PatientList")
-    public String allPatient(@NotNull Model model) throws URISyntaxException {
+    public String allPatient( Model model) throws URISyntaxException {
      List<Patient> patientList = patientService.allPatient();
         model.addAttribute("patientList",patientList);
 
@@ -69,10 +68,10 @@ public class PatientController {
     }
 
     @PostMapping("/newPatient")
-    public String addPatient( @NotNull @Valid Patient patient, Gendre gendre,Model model,BindingResult result ) throws ParseException, URISyntaxException {
+    public String addPatient( @Valid Patient patient,Model model,BindingResult result ) throws ParseException, URISyntaxException {
 
-         patientService.addPatient(patient,gendre);
-        List<Patient> patientList = patientService.allPatient();
+         patientService.addPatient(patient);
+         List<Patient> patientList = patientService.allPatient();
         model.addAttribute("patientList",patientList);
 
         return "/PatientList";
@@ -86,7 +85,7 @@ public class PatientController {
         return "updatePatient";
     }
     @PostMapping("/upPatient/{id}")
-    public String upPatient(@NotNull Patient patient,@PathVariable Integer id,Model model) throws ParseException {
+    public String upPatient( Patient patient,@PathVariable Integer id,Model model) throws ParseException {
 
         patientService.updatePatient(id,patient);
         model.addAttribute("patient",patient);

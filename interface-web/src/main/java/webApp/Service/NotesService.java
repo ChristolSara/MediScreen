@@ -26,8 +26,11 @@ public class NotesService {
         return  Arrays.asList(noteGateway.getAllNotesByPatientId(patientId).getBody());
 
     }
+    public Note getNoteById(String id){
+        return noteGateway.getNotesById(id).getBody();
+    }
 
-    public void delete(Integer id) {
+    public void delete(String id) {
         noteGateway.delete(id);
 
     }
