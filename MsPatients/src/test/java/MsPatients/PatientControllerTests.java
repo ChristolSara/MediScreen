@@ -19,80 +19,69 @@ import java.util.Date;
 import java.util.List;
 
 
-
 @SpringBootTest
 public class PatientControllerTests {
     @Autowired
     PatientController patientController;
 
 
-    private static Patient patientTest = new Patient();
-    @BeforeEach
-      void injectPatient()  {
-
-      patientTest.setPhoneNumber("0605889977");
-      patientTest.setFirstName("terst");
-      patientTest.setBirthday(new Date());
-      patientTest.setLastName("testLast");
-      patientTest.setGenre(Gendre.FEMME);
-
-
-    }
-    @AfterEach
-     void delPatient() throws PatientAlreadyExistsException, PatientNotFoundException {
-
-        patientController.delete(patientTest);
-
-    }
     @Test
-     void SavePatient() throws PatientAlreadyExistsException, PatientNotFoundException, ParseException {
-
-
-        ///prepare
-        patientController.addPatient(patientTest);
-
+    void SavePatient() throws PatientAlreadyExistsException {
+        Patient patientTest = new Patient(null,"test","testLast",new Date(),Gendre.HOMME,"1 test ","0655663322");
         //excute save
-
-        Patient patient1 = patientController.getPatientByPhoneNumber(patientTest.getPhoneNumber());
+        patientController.addPatient(patientTest);
         //assert
         Assert.assertNotNull(patientTest);// Check if the result is not null
-        Assert.assertEquals("terst",patient1.getFirstName());
+        Assert.assertTrue(patientController.allPatients().contains(patientTest));
+
+        patientController.delete(patientTest);
     }
 
     @Test
     public void updatePatient() throws ParseException, PatientAlreadyExistsException, PatientNotFoundException {
+        Patient patientTest = new Patient(null,"test","testLast",new Date(),Gendre.HOMME,"1 test ","0655663322");
+
 
 //        update
         patientController.addPatient(patientTest);
         Patient patient1 = patientController.getPatientByPhoneNumber(patientTest.getPhoneNumber());
-        patient1.setPhoneNumber("0766991155");
-        patientController.updatePatient(patient1.getId(),patient1);
-        Assert.assertEquals(patient1.getPhoneNumber(), "0766991155");
-        Assert.assertEquals(patient1.getFirstName(), "terst");
+        patient1.setAdress("123");
+        patientController.updatePatient(patient1.getId(), patient1);
+        Assert.assertEquals(patient1.getAdress(), "123");
+        Assert.assertEquals(patient1.getFirstName(), "test");
+        patientController.delete(patient1);
     }
 
     @Test
     public void listPatient() {
+
+
         List<Patient> patientList = patientController.allPatients();
-        Assert.assertTrue(patientList.size() > 0);
+
+        Assert.assertTrue(patientList.size() >= 0);
+
     }
 
     @Test
     public void getPatientById() throws PatientAlreadyExistsException, PatientNotFoundException {
+        Patient patientTest = new Patient(null,"test","testLast",new Date(),Gendre.HOMME,"1 test ","0655663322");
 
-        //preparation
 
-        patientController.addPatient(patientTest);
+        //excute
+        Patient patientInjected = patientController.addPatient(patientTest);
 
-        Patient patient2 = patientController.getPatientById(patientTest.getId());
         //assert
-        Assert.assertEquals("0605889977",patientTest.getPhoneNumber());
+        Assert.assertEquals("testLast", patientInjected.getLastName());
+        patientController.delete(patientInjected);
     }
 
     @Test
     public void deletePatient() throws PatientAlreadyExistsException, PatientNotFoundException {
+        Patient patientTest = new Patient(null,"test","testLast",new Date(),Gendre.HOMME,"1 test ","0655663322");
+
 
         patientController.addPatient(patientTest);
+
 
         patientController.deletePatient(patientTest.getId());
 

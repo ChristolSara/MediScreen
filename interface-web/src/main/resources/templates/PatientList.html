@@ -37,7 +37,15 @@
                         <th>Gendre</th>
                         <th>Adress</th>
                         <th>Phone Number</th>
+                        <th>Notes</th>
+                        <th>Update Patient</th>
+                        <th> Delete Patient</th>
+
                     </tr>
+                    </thead>
+
+
+                    <tbody>
                     <tr th:each="patient:${patientList}">
                         <td th:text="${patient.id}"></td>
                         <td th:text="${patient.firstName}"></td>
@@ -68,7 +76,7 @@
 
 
                     </tr>
-                    </thead>
+                    </tbody>
                 </table>
             </div>
 

@@ -5,11 +5,15 @@ import MsPatients.Exceptions.PatientNotFoundException;
 import MsPatients.Models.Patient;
 
 import MsPatients.Controller.PatientController;
+import MsPatients.enums.Gendre;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
@@ -44,5 +48,30 @@ public class ExceptionsTests {
         Assert.assertTrue(actualMessage.contains(expectedMessage));
 
     }
+
+
+    @Test
+    void Patient() throws PatientAlreadyExistsException, PatientNotFoundException {
+        Patient patientTest = new Patient(null, "test", "testLast", new Date(), Gendre.HOMME, "1 test ", "0655663322");
+        //test save
+        Patient injectedPatient = patientController.addPatient(patientTest);
+        //assert
+        Assert.assertNotNull(injectedPatient);// Check if the result is not null
+        //test allPatient
+        List<Patient> patientList = patientController.allPatients();
+        Assert.assertTrue(patientList.contains(injectedPatient));
+        //test update Patient + get by id
+        Patient patientUpdated = patientController.getPatientById(injectedPatient.getId());
+        patientUpdated.setAdress("123");
+        patientController.updatePatient(patientUpdated.getId(), patientUpdated);
+
+        Assert.assertEquals(patientUpdated.getAdress(), "123");
+        Assert.assertEquals(patientUpdated.getFirstName(), "test");
+
+        //test delete
+        patientController.deletePatient(patientUpdated.getId());
+        Assert.assertTrue(!patientController.allPatients().contains(patientTest));
+    }
+
 
 }
