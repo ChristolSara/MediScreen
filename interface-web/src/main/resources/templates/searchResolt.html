@@ -38,6 +38,7 @@
                         <th>Gendre</th>
                         <th>Gendre</th>
                         <th>phone number</th>
+                        <th>Notes</th>
                     </tr>
                     <tr th:Object="${patient1}">
                         <td th:text="${patient1.id}"></td>
@@ -47,6 +48,12 @@
                         <td th:text="${patient1.genre}"></td>
                         <td th:text="${patient1.adress}"></td>
                         <td th:text="${patient1.phoneNumber}"></td>
+                        <td>
+                            <a class="btn btn-secondary border-blue"
+                               th:href="@{/NoteList/{id}(id=${patient1.id})}">
+                                Notes
+                            </a>
+                        </td>
 
 
                     </tr>

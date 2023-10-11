@@ -20,14 +20,14 @@
 
 <div layout:fragment="content">
     <div class="form-holder">
-        <h2>Patient</h2>
+        <h2>Search Patient</h2>
 
-        <form action="#" th:action="@{/search}" th:object="${patient}" method="GET">
+        <form class="form-class" action="#" th:action="@{/search}" th:object="${patient}" method="GET">
 
-            <p> Phone Number <input type="number" name ="id" th:field="${patient.phoneNumber}" th:value="${patient.phoneNumber}"/> </p>
+            <p>Patient Phone Number <input type="number" name ="id" th:field="${patient.phoneNumber}" th:value="${patient.phoneNumber}"/> </p>
 
             <span class="text-danger" th:text="${erreur}"></span>
-            <p> <input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+            <p> <input type="submit" value="Submit" class="btn btn-secondary border-blue" />
 
 
 <!--            <span class="text-danger" th:errors="${patient.phoneNumber}" th:value=""  class="error" ></span>-->

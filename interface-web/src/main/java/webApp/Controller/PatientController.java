@@ -8,12 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import webApp.Models.Patient;
 import webApp.Service.PatientService;
 import webApp.enums.Gendre;
 
 import java.net.URISyntaxException;
+import java.net.http.HttpClient;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -30,23 +32,25 @@ public class PatientController {
         return "/index";
     }
     @GetMapping("/search")
-    public String searchPatient(@Valid Patient patient, Model model, BindingResult result) throws URISyntaxException {
+    public String searchPatient(Patient patient, Model model) throws URISyntaxException {
 
 
-        if(patient.getPhoneNumber().isEmpty()){
+        try {
+            Patient patient1 =patientService.getPatientByNumber(patient.getPhoneNumber());
+            model.addAttribute("patient1",patient1);
+            return "/searchResolt";
+
+        }catch (HttpClientErrorException e){
+            String erreur = "Phone Number not found";
+            model.addAttribute("erreur",erreur);
+            return "/index";
+
+        }finally {
             String erreur = "Phone Number required";
             model.addAttribute("erreur",erreur);
             return "/index";
         }
-        Patient patient1 =patientService.getPatientByNumber(patient.getPhoneNumber());
 
-        if(patient1 == null){
-            String erreur = "Phone Number not found";
-            model.addAttribute("erreur",erreur);
-            return "/index";
-       }
-        model.addAttribute("patient1",patient1);
-        return "/searchResolt";
     }
 
 
