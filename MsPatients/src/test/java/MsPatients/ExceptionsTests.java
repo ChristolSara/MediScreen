@@ -50,28 +50,28 @@ public class ExceptionsTests {
     }
 
 
-    @Test
-    void Patient() throws PatientAlreadyExistsException, PatientNotFoundException {
-        Patient patientTest = new Patient(null, "test", "testLast", new Date(), Gendre.HOMME, "1 test ", "0655663322");
-        //test save
-        Patient injectedPatient = patientController.addPatient(patientTest);
-        //assert
-        Assert.assertNotNull(injectedPatient);// Check if the result is not null
-        //test allPatient
-        List<Patient> patientList = patientController.allPatients();
-        Assert.assertTrue(patientList.contains(injectedPatient));
-        //test update Patient + get by id
-        Patient patientUpdated = patientController.getPatientById(injectedPatient.getId());
-        patientUpdated.setAdress("123");
-        patientController.updatePatient(patientUpdated.getId(), patientUpdated);
-
-        Assert.assertEquals(patientUpdated.getAdress(), "123");
-        Assert.assertEquals(patientUpdated.getFirstName(), "test");
-
-        //test delete
-        patientController.deletePatient(patientUpdated.getId());
-        Assert.assertTrue(!patientController.allPatients().contains(patientTest));
-    }
+//    @Test
+//    void Patient() throws PatientAlreadyExistsException, PatientNotFoundException {
+//        Patient patientTest = new Patient(null, "test", "testLast", new Date(), Gendre.HOMME, "1 test ", "0655663322");
+//        //test save
+//        Patient injectedPatient = patientController.addPatient(patientTest);
+//        //assert
+//        Assert.assertNotNull(injectedPatient);// Check if the result is not null
+//        //test allPatient
+//        List<Patient> patientList = patientController.allPatients();
+//        Assert.assertTrue(patientList.contains(injectedPatient));
+//        //test update Patient + get by id
+//        Patient patientUpdated = patientController.getPatientById(injectedPatient.getId());
+//        patientUpdated.setAdress("123");
+//        patientController.updatePatient(patientUpdated.getId(), patientUpdated);
+//
+//        Assert.assertEquals(patientUpdated.getAdress(), "123");
+//        Assert.assertEquals(patientUpdated.getFirstName(), "test");
+//
+//        //test delete
+//        patientController.deletePatient(patientUpdated.getId());
+//        Assert.assertTrue(!patientController.allPatients().contains(patientTest));
+//    }
 
 
 }

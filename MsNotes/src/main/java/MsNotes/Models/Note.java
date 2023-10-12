@@ -1,8 +1,6 @@
 package MsNotes.Models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -11,7 +9,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @Document("note")
-@AllArgsConstructor @NoArgsConstructor @Data
+@AllArgsConstructor @NoArgsConstructor @Getter @Setter
 public class Note {
     @Id
     private String id;

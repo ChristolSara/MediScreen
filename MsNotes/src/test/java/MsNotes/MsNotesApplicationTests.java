@@ -32,7 +32,11 @@ class MsNotesApplicationTests {
 
 	@Test
 	public void saveNote() {
-		Note note = new Note("null", 1, "debut de concer", new Date());
+		Note note = new Note();
+		note.setId(null);
+		note.setNote("debut de concer");
+		note.setNoteDate(new Date());
+		note.setPatientId(1);
 		noteController.addNote(note);
 
 
