@@ -6,13 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="MsPatients" />
         <module name="interface-web" />
+        <module name="msDiabete" />
+        <module name="MsPatients" />
         <module name="MsNotes" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="interface-web" target="17" />
+      <module name="msDiabete" target="17" />
       <module name="MsNote" target="17" />
       <module name="MsNotes" target="17" />
       <module name="MsPatients" target="17" />
@@ -24,6 +26,7 @@
       <module name="MsNotes" options="-parameters" />
       <module name="MsPatients" options="-parameters" />
       <module name="interface-web" options="-parameters" />
+      <module name="msDiabete" options="-parameters" />
     </option>
   </component>
 </project>
