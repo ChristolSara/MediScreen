@@ -16,12 +16,11 @@ public class DiabeteController {
 
     private PatientGateway patientGateway;
 
-    @GetMapping("/diabette/{id}")
+    @GetMapping("/diabete/{id}")
     public String getDiabete(@PathVariable Integer id){
 
         Patient patient = patientGateway.getPatient(id).getBody();
 
         return diabeteService.diabeteAssess(patient);
-
     }
 }
