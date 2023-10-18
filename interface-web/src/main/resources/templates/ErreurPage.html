@@ -3,13 +3,32 @@
       xmlns:layout="http://www.w3.org/1999/xhtml"
       layout:decorate="layout.html">
 <head>
-  <title>error page</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link  href="../bootstrap.min.css" rel="stylesheet">
-  <link  href="../style.css" rel="stylesheet">
+  <link  href="../styleErrPage.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+  <title>404 The page you are looking for was not found</title>
 </head>
 <body>
 <div layout:fragment="content">
-<h3></h3>
+
+
+  <div id="notfound">
+    <div class="notfound">
+      <div class="notfound-404">
+        <h1>4<span>0</span>4</h1>
+      </div>
+      <p>Oops! Something went wrong. The page you are looking for was not found. please return to home.</p>
+      <a  th:href="@{/home}"  class="btn btn-secondary border-blue" >Home</a>
+    </div>
+  </div>
+
 
 </div>
 </body>

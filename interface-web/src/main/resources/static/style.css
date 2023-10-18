@@ -1,3 +1,14 @@
+
+
+/*
+body css
+*/
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Mulish', sans-serif;
+
+}
 body {
     overflow-x: hidden;
     height: 100%;
@@ -8,8 +19,10 @@ body {
       background-size: cover;
       -o-background-size: cover;
       color: #3E3358;
-}
 
+
+}
+/*footer style*/
 .card0 {
 
     border-radius: 0px;
@@ -202,20 +215,6 @@ font-family: 'Libre Baskerville';
 .footer{
 margin-bottom:0px !important;
 }
-
-
-.form-holder {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      min-height: 80vh;
-      background-color:#F4F1EC;
-
-
-}
-
 form{
 background-color:#fff;
  padding: 40px 40px 40px 40px !important;
@@ -225,17 +224,29 @@ background-color:#fff;
           border-color: #EB5E21 !important;
          box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
+
+.form-holder {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 80vh;
+      background-color:#F4F1EC;
+     }
+
 .border-blue {
- border-radius: 8px !important;
-     background-color: #EB5E21 !important;
-    border-color: #EB5E21 !important;
+      border-radius: 8px !important;
+      background-color: #EB5E21 !important;
+     border-color: #EB5E21 !important;
 }
 .btn-outline-light{
    color: #EB5E21 !important;
-
     background-image: none;
     border-color: #EB5E21 !important;
 }
+
+
 .form-signin{
 width:100% !important;
 }

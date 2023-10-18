@@ -14,6 +14,7 @@ public class DiabeteGateway {
 
 
     public ResponseEntity<String> getDiabete(Integer id) {
+
         return restTemplate.getForEntity("http://localhost:8020/diabete/{id}", String.class,id);
     }
 }
