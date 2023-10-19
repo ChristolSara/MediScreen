@@ -34,9 +34,10 @@ public class PatientController {
     @GetMapping("/search")
     public String searchPatient(Patient patient, Model model) throws URISyntaxException {
 
+        Patient patient1 =patientService.getPatientByNumber(patient.getPhoneNumber());
 
         try {
-            Patient patient1 =patientService.getPatientByNumber(patient.getPhoneNumber());
+
             model.addAttribute("patient1",patient1);
             return "/searchResolt";
 
