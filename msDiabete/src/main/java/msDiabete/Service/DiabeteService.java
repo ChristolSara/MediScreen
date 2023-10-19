@@ -37,7 +37,7 @@ public class DiabeteService {
 
     public Integer computeDeclench(Patient patient) {
 
-        int nbr = 1;
+        int nbr = 0;
 
         List<Note> noteList = List.of(noteGateway.getAllNotesByPatientId(patient.getId()).getBody());
         List<String> notes = noteList.stream().map(Note::getNote).collect(Collectors.toList());

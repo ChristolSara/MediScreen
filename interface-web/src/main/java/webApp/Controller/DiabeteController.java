@@ -19,31 +19,26 @@ public class DiabeteController {
        ResponseEntity<String> response = diabeteGateway.getDiabete(patientId);
          String diabete = response.getBody();
 
-         if(diabete =="None"){
-             String p = "0";
-             model.addAttribute("p",p);
-             model.addAttribute("patientId",patientId);
-             model.addAttribute("diabete",diabete);
-         }else if(diabete =="Borderline"){
-             String p = "10";
-             model.addAttribute("p",p);
-             model.addAttribute("patientId",patientId);
-             model.addAttribute("diabete",diabete);
+         String p = null;
+         if(diabete.contains("None")){
+             p ="0,100";
+           
+         }else if(diabete.contains("Borderline") ){
+           p = "10,100";
 
-         }else if(diabete =="Early onset"){
-             String p = "30";
-             model.addAttribute("p",p);
-             model.addAttribute("patientId",patientId);
-             model.addAttribute("diabete",diabete);
-
-         }else if(diabete =="In Danger"){
-             String p = "90";
-             model.addAttribute("p",p);
-             model.addAttribute("patientId",patientId);
-             model.addAttribute("diabete",diabete);
-
+         }else if(diabete.contains("Early onset") ){
+             p = "30,100";
+            
+         }else if(diabete.contains("In Danger") ){
+            p = "90,100";
+            
          }
+
+        model.addAttribute("p" ,p);
+        model.addAttribute("patientId",patientId);
+        model.addAttribute("diabete",diabete);
         return "diabeteResult";
+
     }
 
 
