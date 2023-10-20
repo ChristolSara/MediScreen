@@ -30,7 +30,7 @@
                 <table>
                     <thead>
                     <tr>
-                        <th>ID</th>
+<!--                        <th>ID</th>-->
                         <th>Patient Id</th>
                         <th>Note</th>
                         <th>date</th>
@@ -43,7 +43,7 @@
 
                     </tr>
                     <tr th:each="note:${noteList}">
-                        <td th:text="${note.id}"></td>
+<!--                        <td th:text="${note.id}"></td>-->
                         <td th:text="${note.patientId}"></td>
                         <td th:text="${note.note}"></td>
                         <td th:text="${#dates.format(note.noteDate, 'dd/MM/yyyy')}"></td>

@@ -30,7 +30,7 @@
                 <table>
                     <thead>
                     <tr>
-                        <th>ID</th>
+<!--                        <th>ID</th>-->
                         <th>First name</th>
                         <th>Last name</th>
                         <th>Birthday</th>
@@ -47,7 +47,7 @@
 
                     <tbody>
                     <tr th:each="patient:${patientList}">
-                        <td th:text="${patient.id}"></td>
+<!--                        <td th:text="${patient.id}"></td>-->
                         <td th:text="${patient.firstName}"></td>
                         <td th:text="${patient.lastName}"></td>
                         <td th:text="${#dates.format(patient.birthday, 'dd/MM/yyyy')}"></td>
